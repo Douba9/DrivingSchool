@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(255, 0, 0) 0%, rgb(225, 234, 238) 90%);
+    }
+    .navbar {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(225, 234, 238) 0%, rgb(255, 0, 0) 90%);
+    }
+    .navlink {
+        color: black;
+    }
+</style>
+<div class="container-fluid">
+    {% if plannings %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+            <h1>Votre planning</h1>
+            <a class="btn btn-dark" href="{% url 'Student:detailStudent' %}">Profil</a>
+            <table class="table table-bordered table-striped table-hover mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Heure</th>
+                        <th scope="col">Instructor</th>
+                        <th scope="col">Adresse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for planning in plannings %}
+                    <tr>
+                        <td>{{ planning.date|date:"d-m-Y" }}</td>
+                        <td>{{ planning.date|date:"H:i" }}</td>
+                        <td>{{ planning.instructor.username }}</td>
+                        <td>{{ planning.place }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <p> Vous n'avez pas encore de rendez-vous</p>
+    {% endif %}
+</div>
+{% endblock %}
