@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Modifier{% endblock %}
+{% block content %}
+<style>
+    body {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(255, 0, 0) 0%, rgb(225, 234, 238) 90%);
+    }
+    .navbar {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(225, 234, 238) 0%, rgb(255, 0, 0) 90%);
+    }
+    .navlink {
+        color: black;
+    }
+</style>
+<div>
+<form method="post">
+    {% if error_message %}<p>{{ error_message }}</p>{% endif %}
+    {% csrf_token %}
+    {{ form.student }}
+    {{ form.date }}
+    {{ form.place }}
+    <input class="btn btn-primary" type="submit" value="Enregistrer les modifications">
+</form>
+    <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
+
+</div>
+{% endblock %}

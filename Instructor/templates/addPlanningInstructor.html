@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Add{% endblock %}
+{% block content %}
+<style>
+    body {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(255, 0, 0) 0%, rgb(225, 234, 238) 90%);
+    }
+    .navbar {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(225, 234, 238) 0%, rgb(255, 0, 0) 90%);
+    }
+    .navlink {
+        color: black;
+    }
+</style>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.student }}
+        {{ form.instructor }}
+        <input type="datetime-local" name="{{ form.date.name }}" value="{{ form.date.value|default:'' }}" required>
+        {{ form.place }}
+        
+        <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </form>
+    <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
+    {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Confirm{% endblock %}
+{% block content %}
+<div>
+    <style>
+        body {
+            background: radial-gradient(circle at 18.7% 37.8%, rgb(255, 0, 0) 0%, rgb(225, 234, 238) 90%);
+        }
+        .navbar {
+            background: radial-gradient(circle at 18.7% 37.8%, rgb(225, 234, 238) 0%, rgb(255, 0, 0) 90%);
+        }
+        .navlink {
+            color: black;
+        }
+    </style>
+<form method="post" action="{% url 'Instructor:supprimer_planning' planning.id %}">
+    {% csrf_token %}
+    <p>Êtes-vous sûr de vouloir supprimer le RDV avec  {{ planning.student }} le {{ planning.date|date:"d-m-Y" }} à {{ planning.date|date:"H:i" }} ?</p>
+    <input class="btn btn-danger" type="submit" value="Confirmer la suppression">
+</form>
+    <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
+</div>
+{% endblock %}
